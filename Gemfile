@@ -48,6 +48,9 @@ gem "acts-as-taggable-on", '~> 9.0'
 gem "composite_primary_keys"
 gem "csv"
 gem "parallel"
+gem "faraday"
+gem "aws-sdk-rails"
+gem "clockwork"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

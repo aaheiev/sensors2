@@ -44,7 +44,7 @@ namespace :import do
                 Rails.logger.debug "found: [#{created_at}] #{metric} #{row[header]}"
               else
                 channel.measurements.create({created_at: created_at.to_datetime, metric: metric, value: row[header]})
-                Rails.logger.info "adding: [#{created_at}] #{metric} #{row[header]}"
+                Rails.logger.info "[#{channel.id}]: add [#{created_at}] #{metric} #{row[header]}"
               end
             end
           end

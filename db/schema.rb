@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_22_145115) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_22_172210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "timescaledb"
@@ -66,6 +66,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_145115) do
     t.datetime "updated_at", null: false
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "ubibot_auths", id: false, force: :cascade do |t|
+    t.datetime "created_at", precision: nil, default: "2023-01-22 19:37:40"
+    t.datetime "expired_at", precision: nil
+    t.datetime "server_time", precision: nil
+    t.string "token"
+    t.index ["created_at", "expired_at"], name: "index_ubibot_auths_on_created_at_and_expired_at", unique: true
+    t.index ["created_at"], name: "index_ubibot_auths_on_created_at"
+    t.index ["expired_at"], name: "index_ubibot_auths_on_expired_at"
   end
 
   add_foreign_key "measurements", "channels"
