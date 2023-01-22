@@ -43,6 +43,11 @@ gem "redis", "~> 4.0"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "rails-healthcheck"
+gem "high_voltage", '~> 3.1'
+gem "acts-as-taggable-on", '~> 9.0'
+gem "composite_primary_keys"
+gem "csv"
+gem "parallel"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

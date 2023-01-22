@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
+  resources :channels
   get '/version', to: 'version#show'
+  get '/about' => 'high_voltage/pages#show', id: 'about'
   Healthcheck.routes(self)
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root "home#index"
 end
