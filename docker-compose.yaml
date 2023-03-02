@@ -1,0 +1,55 @@
+---
+version:                       '3.9'
+secrets:
+  db_password:
+    file:                      .secrets/db_password
+#  lockbox_master_key:
+#    file:                      secrets/lockbox_master_key
+#  ubibot_account_key:
+#    file:                      secrets/ubibot_account_key
+#volumes:
+#  database:                    {}
+services:
+
+  database:
+    image:                    timescale/timescaledb:latest-pg14-oss
+    environment:
+      POSTGRES_USER:          sensors2
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+      POSTGRES_DB:            sensors2
+    volumes:
+#      - database:/var/lib/postgresql/data
+      - ./.db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    secrets:
+      - db_password
+    healthcheck:
+      test:                   ["CMD", "pg_isready", "-U", "sensors2"]
+      interval:               5s
+      timeout:                5s
+      retries:                5
+    restart:                  unless-stopped
+
+#  scheduler:
+#    image:                     aaheiev/sensors:latest
+#    environment:
+#      DB_HOST:                 192.168.118.106
+#      DB_NAME:                 sensors
+#      DB_USER:                 sensors
+#      DB_PASS_FILE:            /run/secrets/db_password
+#      LOCKBOX_MASTER_KEY_FILE: /run/secrets/lockbox_master_key
+#      UBIBOT_ACCOUNT_KEY_FILE: /run/secrets/ubibot_account_key
+#    command:
+#      - clockwork
+#      - scheduler.rb
+#    secrets:
+#      - db_password
+#      - lockbox_master_key
+#      - ubibot_account_key
+#    healthcheck:
+#      test:                    ["CMD", "ps aux | grep scheduler.rb | grep -v grep"]
+#      interval:                5s
+#      timeout:                 5s
+#      retries:                 5
+#    restart:                   unless-stopped

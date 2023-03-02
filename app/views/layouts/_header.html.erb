@@ -1,0 +1,30 @@
+<header class="py-3">
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light py-2 px-2">
+    <div class="container px-4">
+      <%= link_to 'Sensors', root_path, class: "navbar-brand" %>
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarCollapse"
+              aria-controls="navbarCollapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mb-2 mb-md-0">
+          <li class="nav-item">
+            <%= link_to 'about', page_path('about'), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'license', page_path('license'), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'version', version_path, class: "nav-link" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
